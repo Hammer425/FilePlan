@@ -1,0 +1,45 @@
+// Objective initialize a file structure based on comma delimited entries in
+// a pseudo-DIA (Drug Information Association) file plan.
+//
+// Top folder "File Plan"
+// 3 sub folders Levels for Study, Country, and Site (X means that the Level
+// contains the artifact, and a 0 means it does not) as you can see the first
+// entry is created on all 3 levels, and the second entry is only created at
+// the Study and Site levels.
+//
+// Levels have variable amount of sub-folders for Zones
+// Zones have variable amount of sub-folders for Section
+// Sections contain the 0 byte files which are Artifacts
+//
+// FilePlanEntry mappings
+// Zone,Section,Artifact,Study,Country,Site
+01 Trial Management,01.01 Trial Oversight,01.01.01 Trial Master File Plan,X,X,X
+01 Trial Management,01.01 Trial Oversight,01.01.02 Trial Management Plan,X,0,X
+01 Trial Management,01.02 Trial Team,01.02.01 Trial Team Details,X,X,X
+01 Trial Management,01.03 Trial Oversight,01.03.01 Trial Committee,0,0,X
+
+Would generate:
+
+File Plan
+|-- Study
+|   |-- 01 Trial Management
+|   |   |-- 01.01 Trial Oversight
+|   |   |   |-- 01.01.01 Trial Master File Plan
+|   |   |   |-- 01.01.02 Trial Management Plan
+|   |   |-- 01.02 Trial Team
+|   |   |   |-- 01.02.01 Trial Team Details
+|-- Country
+|   |-- 01 Trial Management
+|   |   |-- 01.01 Trial Oversight
+|   |   |   |-- 01.01.01 Trial Master File Plan
+|   |   |-- 01.02 Trial Team
+|   |   |   |-- 01.02.01 Trial Team Details
+|-- Site
+|   |-- 01 Trial Management
+|   |   |-- 01.01 Trial Oversight
+|   |   |   |-- 01.01.01 Trial Master File Plan
+|   |   |   |-- 01.01.02 Trial Management Plan
+|   |   |-- 01.02 Trial Team
+|   |   |   |-- 01.02.01 Trial Team Details
+|   |   |-- 01.03 Trial Oversight
+|   |   |   |-- 01.03.01 Trial Committee
